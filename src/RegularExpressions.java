@@ -26,4 +26,15 @@ public class RegularExpressions {
                 System.out.println(number);
             }
     }
+
+    public static void findImgSource(){
+        String text = "<img src = \"neco.jpg\" alt = \"neco\"/>";
+        String regex = "(\\<img src = \"(\\w*.\\w*)\" alt = \"(\\w*)\"\\/\\>)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            System.out.println(matcher.group(2));
+        }
+    }
 }
