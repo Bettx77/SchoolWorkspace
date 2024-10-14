@@ -1,10 +1,26 @@
+import java.io.*;
+import java.sql.SQLData;
+
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println("Zadejte znak: ");
+        try {
+            char Znak = (char) System.in.read();
+            System.out.println(Znak);
+        } catch (IOException e) {
+            System.out.println("Chyba cteni dat");
+        }
 
+
+
+
+
+
+
+        /* ----- for Regular Expressions -----
         RegularExpressions.printingNumbersWithoutPrefix();
         RegularExpressions.findImgSource();
-
 
 
         /* ----- for Number In string -----

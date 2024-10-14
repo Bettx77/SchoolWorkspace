@@ -28,7 +28,7 @@ public class RegularExpressions {
     }
 
     public static void findImgSource(){
-        String text = "<img src = \"neco.jpg\" alt = \"neco\"/>";
+        String text = "<img src = \"neco.jpg\" alt = \"neco\"/><img src = \"nekdo.jpg\" alt = \"neco\"/>";
         String regex = "(\\<img src = \"(\\w*.\\w*)\" alt = \"(\\w*)\"\\/\\>)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
