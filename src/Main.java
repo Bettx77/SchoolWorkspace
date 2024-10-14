@@ -3,7 +3,8 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
 
-        Exceptions.readChar();
+        // Exceptions.readChar();
+        System.out.println(Exceptions.readInt());
 
 
 
