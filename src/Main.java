@@ -6,6 +6,13 @@ public class Main {
         // Exceptions.readChar();
         System.out.println(Exceptions.readInt());
 
+        try {
+            TriangleObject abc = new TriangleObject(1, 5, 9);
+            System.out.println(abc.obvod());
+        } catch (ArithmeticException e) {
+            System.out.println("Nezadali jste platne cislo");
+        }
+
 
 
 
