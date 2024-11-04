@@ -4,11 +4,12 @@ public class Main {
     public static void main(String[] args) {
 
         // Exceptions.readChar();
-        System.out.println(Exceptions.readInt());
+        //System.out.println(Exceptions.readInt());
 
         try {
-            TriangleObject abc = new TriangleObject(1, 5, 9);
+            TriangleObject abc = new TriangleObject(3, 5, 4);
             System.out.println(abc.obvod());
+            System.out.println(abc.obsah());
         } catch (ArithmeticException e) {
             System.out.println("Nezadali jste platne cislo");
         }

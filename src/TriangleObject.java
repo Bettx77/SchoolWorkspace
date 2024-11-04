@@ -16,4 +16,9 @@ public class TriangleObject {
     double obvod(){
         return (stranaA + stranaB + stranaC);
     }
+
+    double obsah(){
+        double s = obvod()/2;
+        return (Math.sqrt(s*(s-stranaA)*(s-stranaB)*(s-stranaC)));
+    }
 }
