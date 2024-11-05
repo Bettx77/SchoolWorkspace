@@ -12,6 +12,8 @@ public class Main {
             System.out.println(abc.obsah());
         } catch (ArithmeticException e) {
             System.out.println("Nezadali jste platne cislo");
+        } finally {
+            System.out.println("Konec výjimek");
         }
 
 
