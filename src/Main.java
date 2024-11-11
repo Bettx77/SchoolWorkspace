@@ -3,6 +3,19 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
 
+        String adresar = System.getProperty("user.dir");
+        File slozka = new File(adresar);
+        String [] jmena;
+        jmena = slozka.list();
+        for (int i = 0; i < jmena.length; i++){
+            System.out.println(jmena[i]);
+        }
+
+
+
+
+
+        /* ----- for Triangle Object -----
         // Exceptions.readChar();
         //System.out.println(Exceptions.readInt());
 
@@ -15,10 +28,6 @@ public class Main {
         } finally {
             System.out.println("Konec výjimek");
         }
-
-
-
-
 
 
         /* ----- for Regular Expressions -----
@@ -60,7 +69,7 @@ public class Main {
         //System.out.println(dPole.pole[0]);
         dPole.printDynamicArray();
         dPole.deleteMiddleElement(4);
-         */
+        */
 
     }
 }
