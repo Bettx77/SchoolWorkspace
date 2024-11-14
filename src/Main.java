@@ -3,16 +3,11 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
 
-        String adresar = System.getProperty("user.dir");
-        File slozka = new File(adresar);
-        String [] jmena;
-        jmena = slozka.list();
-        for (int i = 0; i < jmena.length; i++){
-            System.out.println(jmena[i]);
+        try {
+            Input.zpracuj("a.txt", "b.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-
-
 
 
         /* ----- for Triangle Object -----
