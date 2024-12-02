@@ -1,13 +1,31 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        // Zadejte cestu k souboru
+        String filePath = "C:\\Users\\betty\\Documents\\GitHub\\SchoolWorkspace\\src\\data.txt";
 
-        try {
-            Input.zpracuj("a.txt", "b.txt");
+        ArrayList<int[]> poles = new ArrayList<>();
+        Input input = null;
+
+        try  {
+            input = new Input(filePath);
+            int[] pole;
+            while ((pole = input.rowInput()) != null) {
+                poles.add(pole);
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Chyba při práci se souborem: " + e.getMessage());
         }
+
+        // Výstup pro kontrolu
+        for (int[] pole : poles) {
+            System.out.println(Arrays.toString(pole));
+        }
+
+
 
 
         /* ----- for Triangle Object -----

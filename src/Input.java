@@ -1,30 +1,51 @@
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
-public class Input {
-    public static void zpracuj(String zdrojovy, String cilovy) throws IOException {
-        FileReader zdrojPom = new FileReader(zdrojovy);
-        BufferedReader zdroj = new BufferedReader(zdrojPom);
-        FileWriter cilPom = new FileWriter(cilovy);
-        BufferedWriter cil = new BufferedWriter(cilPom);
+class Input {
 
-        String radka;
+    private BufferedReader reader;
 
-        while ((radka = zdroj.readLine()) != null){
-            System.out.println(radka);
-            cil.write(radka);
-            cil.newLine();
+    public Input(String filePath) throws IOException {
+        reader = new BufferedReader(new FileReader(filePath));
+    }
+
+    public int[] rowInput() {
+        try {
+            String row = reader.readLine();
+            if (row == null || row.isEmpty()) {
+                return null;
+            }
+
+            // Rozdělení řádku na čísla
+            String[] cislaJakoStringy = row.trim().split("\\s+");
+            return Arrays.stream(cislaJakoStringy)
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Chyba při čtení řádku: " + e.getMessage());
         }
-
-        zdrojPom.close();
-        cil.close();
-
+        return null;
     }
 
-    public static double[][] NactiMatici(String filePath) throws IOException{
-    FileReader zdrojPom = new FileReader(filePath)
-    }
+//    public static void zpracuj(String zdrojovy, String cilovy) throws IOException {
+//        FileReader zdrojPom = new FileReader(zdrojovy);
+//        BufferedReader zdroj = new BufferedReader(zdrojPom);
+//        FileWriter cilPom = new FileWriter(cilovy);
+//        BufferedWriter cil = new BufferedWriter(cilPom);
+//
+//        String radka;
+//
+//        while ((radka = zdroj.readLine()) != null){
+//            System.out.println(radka);
+//            cil.write(radka);
+//            cil.newLine();
+//        }
+//
+//        zdrojPom.close();
+//        cil.close();
+//
+//
+//    }
 }
