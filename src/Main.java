@@ -4,12 +4,31 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+
+        try  {
+            FinalExam_1 exam = new FinalExam_1("C:\\Users\\betty\\Documents\\GitHub\\SchoolWorkspace\\src\\data.txt");
+            double countDouble = FinalExam_1.rowInput()[0];
+            int count = (int) countDouble;
+            System.out.println(count);
+            double[][] matrix = new double[count][count];
+            for (int i = 0; i < count; i++) {
+                matrix[i] = FinalExam_1.rowInput();
+            }
+
+            System.out.println(Arrays.deepToString(FinalExam_1.transpose(count, matrix)));
+
+        } catch (IOException e) {
+            System.err.println("Chyba při práci se souborem: " + e.getMessage());
+        }
+
+        /* ----- for Input -----
         // Zadejte cestu k souboru
         String filePath = "C:\\Users\\betty\\Documents\\GitHub\\SchoolWorkspace\\src\\data.txt";
 
         ArrayList<int[]> poles = new ArrayList<>();
         Input input = null;
 
+        
         try  {
             input = new Input(filePath);
             int[] pole;
@@ -23,10 +42,7 @@ public class Main {
         // Výstup pro kontrolu
         for (int[] pole : poles) {
             System.out.println(Arrays.toString(pole));
-        }
-
-
-
+        }*/
 
         /* ----- for Triangle Object -----
         // Exceptions.readChar();
