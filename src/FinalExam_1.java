@@ -37,4 +37,14 @@ public class FinalExam_1 {
         }
         return finalMatrix;
     }
+
+    public static void sum(int size, double[][] matrix){
+        for(int i = 0; i < size; i++) {
+            double sum = 0;
+            for (int j = 0; j < size; j++) {
+                sum += matrix[i][j];
+            }
+            System.out.println("Sum of row " + i + " is " + sum);
+        }
+    }
 }

@@ -16,10 +16,11 @@ public class Main {
             }
 
             System.out.println(Arrays.deepToString(FinalExam_1.transpose(count, matrix)));
-
+            FinalExam_1.sum(count, matrix);
         } catch (IOException e) {
             System.err.println("Chyba při práci se souborem: " + e.getMessage());
         }
+
 
         /* ----- for Input -----
         // Zadejte cestu k souboru
