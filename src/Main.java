@@ -1,10 +1,40 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            FinalExam_2 exam = new FinalExam_2("C:\\Users\\betty\\Documents\\GitHub\\SchoolWorkspace\\src\\data.txt");
+            ArrayList<Double> return_values = new ArrayList<>();
+            boolean i = true;
+            while (i) {
+                ArrayList<Double> list =FinalExam_2.rowInput();
+                return_values.addAll(list);
+                if(list == null || list.isEmpty()){
+                    i = false;
+                }
+            }
+            // copying values and printing
+            for (double doublei:return_values){
+                if (doublei >= 0) {
+                    System.out.print(doublei + " ");
+                }
+            }
+            System.out.println();
+            for (double doublej :return_values){
+                if (doublej < 0) {
+                    System.out.print(doublej + " ");
+                }
+            }
+//
+//            System.out.println(positive);
+//            System.out.println(negative);
+            } catch (IOException e) {
+            System.err.println("Chyba při práci se souborem: " + e.getMessage());
+        }
+    }
 
+        /* ----- Final Exam 1 -----
         try  {
             FinalExam_1 exam = new FinalExam_1("C:\\Users\\betty\\Documents\\GitHub\\SchoolWorkspace\\src\\data.txt");
             double countDouble = FinalExam_1.rowInput()[0];
@@ -19,8 +49,7 @@ public class Main {
             FinalExam_1.sum(count, matrix);
         } catch (IOException e) {
             System.err.println("Chyba při práci se souborem: " + e.getMessage());
-        }
-
+        }*/
 
         /* ----- for Input -----
         // Zadejte cestu k souboru
@@ -101,5 +130,6 @@ public class Main {
         dPole.deleteMiddleElement(4);
         */
 
-    }
+
+
 }
