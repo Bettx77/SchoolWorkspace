@@ -25,7 +25,7 @@ class Chess {
     static boolean solveNQueens(int board[][], int row) {
         if (row >= N) {
             printSolution(board);
-            return true; // pro všechna řešení false
+            return true;
         }
 
         boolean foundSolution = false; // kontrola najití
@@ -34,10 +34,10 @@ class Chess {
             if (isSafe(board, row, col)) {
                 board[row][col] = 1;
 
-                // rekurzivně umístíme další dámu do dalšího řádku
+                // umístění další dámy do dalšího řádku
                 foundSolution = solveNQueens(board, row + 1) || foundSolution;
 
-                //  odstraníme dámu a zkoušíme další sloupec
+                //  odstranění dámy
                 board[row][col] = 0;
             }
         }
@@ -49,7 +49,11 @@ class Chess {
     static void printSolution(int board[][]) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                System.out.print((board[i][j]));
+                if (board[i][j] == 0)
+                    System.out.print(". ");
+                if (board[i][j] == 1)
+                    System.out.print("* ");
+
             }
             System.out.println();
         }
@@ -57,7 +61,7 @@ class Chess {
     }
 
     public static void main(String args[]) {
-        int board[][] = new int[N][N]; // inicializace prázdné šachovnice
+        int board[][] = new int[N][N];
 
         if (!solveNQueens(board, 0)) {
             System.out.println("Řešení neexistuje.");
