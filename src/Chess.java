@@ -2,7 +2,7 @@ class Chess {
     static final int N = 8;
     static int solutionsCount = 1;
 
-    // punkce pro kontrolu bezpečnosti umístění dámy
+    // funkce pro kontrolu bezpečnosti umístění dámy
     static boolean isSafe(int board[][], int row, int col) {
         // kontrola sloupce
         for (int i = 0; i < row; i++)
