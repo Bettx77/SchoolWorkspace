@@ -1,5 +1,6 @@
 class Chess {
     static final int N = 8;
+    static int solutionsCount = 1;
 
     // punkce pro kontrolu bezpečnosti umístění dámy
     static boolean isSafe(int board[][], int row, int col) {
@@ -25,6 +26,7 @@ class Chess {
     static boolean solveNQueens(int board[][], int row) {
         if (row >= N) {
             printSolution(board);
+            solutionsCount++;
             return true;
         }
 
@@ -47,6 +49,7 @@ class Chess {
 
     // print
     static void printSolution(int board[][]) {
+        System.out.println("=====  " + solutionsCount + "  =====");
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (board[i][j] == 0)
