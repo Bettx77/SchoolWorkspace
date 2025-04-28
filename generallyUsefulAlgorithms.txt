@@ -1,0 +1,242 @@
+// ----------------------------------------
+// 📁 1. ČTENÍ SOUBORU PO ŘÁDCÍCH
+// ----------------------------------------
+BufferedReader br = new BufferedReader(new FileReader("soubor.txt"));
+String line;
+while ((line = br.readLine()) != null) {
+    // zpracuj řádek
+}
+br.close();
+
+
+// ----------------------------------------
+// 📄 2. NAČTENÍ VŠECH ŘÁDKŮ JAKO SEZNAM
+// ----------------------------------------
+List<String> lines = Files.readAllLines(Paths.get("soubor.txt"));
+
+
+// ----------------------------------------
+// 📜 3. NAČTENÍ CELÉHO SOUBORU DO JEDNOHO STRINGU
+// ----------------------------------------
+String content = new String(Files.readAllBytes(Paths.get("soubor.txt")), StandardCharsets.UTF_8);
+
+
+// ----------------------------------------
+// 📝 4. ROZDĚLENÍ ŘÁDKU NA SLOVA
+// ----------------------------------------
+String[] words = line.split(" ");
+
+
+// ----------------------------------------
+// 🅰️ 5. SLOVA ZAČÍNAJÍCÍ VELKÝM PÍSMENEM
+// ----------------------------------------
+for (String word : words) {
+    if (!word.isEmpty() && Character.isUpperCase(word.charAt(0))) {
+        System.out.println(word);
+    }
+}
+
+
+// ----------------------------------------
+// 🔢 6. PŘEVOD ŘETĚZCŮ NA ČÍSLA
+// ----------------------------------------
+int[] numbers = Arrays.stream(line.trim().split("\\s+"))
+    .mapToInt(Integer::parseInt)
+    .toArray();
+
+
+// ----------------------------------------
+// 🧮 7. NAČTENÍ 2D POLE (MATRIX) ZE SOUBORU
+// ----------------------------------------
+List<int[]> matrix = new ArrayList<>();
+BufferedReader br2 = new BufferedReader(new FileReader("soubor.txt"));
+while ((line = br2.readLine()) != null) {
+    int[] row = Arrays.stream(line.trim().split("\\s+"))
+        .mapToInt(Integer::parseInt)
+        .toArray();
+    matrix.add(row);
+}
+br2.close();
+
+
+// ----------------------------------------
+// ➕ 8. PŘIDÁNÍ SLOUPCE A ŘÁDKU K MATICI
+// ----------------------------------------
+for (int i = 0; i < matrix.size(); i++) {
+    int[] row = matrix.get(i);
+    int[] newRow = Arrays.copyOf(row, row.length + 1);
+    newRow[row.length] = row[0];
+    matrix.set(i, newRow);
+}
+int[] firstRowCopy = Arrays.copyOf(matrix.get(0), matrix.get(0).length);
+matrix.add(firstRowCopy);
+
+
+// ----------------------------------------
+// 🛡️ 9. KONTROLA VSTUPU POMOCÍ REGEXU
+// (např. jen malá písmena bez čísel)
+// ----------------------------------------
+String input = "abcxyz";
+if (input.matches("[a-z]+")) {
+    System.out.println("Platný vstup");
+} else {
+    System.out.println("Neplatný vstup");
+}
+
+
+// ----------------------------------------
+// 🔍 10. VYHLEDÁNÍ VZORU V TEXTU (regex matcher)
+// (např. všechna emailová adresy)
+// ----------------------------------------
+String text = "Kontakt: john.doe@example.com nebo info@firma.cz";
+Pattern pattern = Pattern.compile("[\\w.-]+@[\\w.-]+\\.[a-z]{2,}");
+Matcher matcher = pattern.matcher(text);
+while (matcher.find()) {
+    System.out.println(matcher.group());
+}
+
+
+// ----------------------------------------
+// 🧵 11. REGULÁRNÍ VÝRAZY – PŘEHLED
+// ----------------------------------------
+
+// 🔣 ZÁKLADNÍ ZNAKY
+.        // libovolný znak kromě nového řádku
+\\d      // číslice (0–9)
+\\D      // nečíslice
+\\w      // písmeno, číslice nebo podtržítko
+\\W      // opak \\w
+\\s      // bílý znak (mezera, tab, \n)
+\\S      // nebílý znak
+
+// 🔢 OPAKOVÁNÍ A MNOŽSTVÍ
++        // 1 nebo více výskytů
+*        // 0 nebo více výskytů
+?        // 0 nebo 1 výskyt
+{n}      // přesně n opakování (např. a{3} → aaa)
+{n,}     // alespoň n opakování
+{n,m}    // mezi n a m opakování
+
+// 🔠 ZNAKY A SKUPINY
+[abc]        // jeden z uvedených znaků
+[^abc]       // jakýkoli znak kromě a, b, c
+[a-z]        // znak z rozsahu a–z
+(abc)        // skupina znaků
+a|b          // a nebo b
+
+// 📍 UKOTVENÍ
+^        // začátek řetězce
+$        // konec řetězce
+\\b      // hranice slova
+
+// 🧪 UŽITEČNÉ PŘÍKLADY
+^\\d+$                           // pouze čísla
+[\\w.-]+@[\\w.-]+\\.[a-z]{2,}    // email
+\\d{3}\\s\\d{3}\\s\\d{3}         // telefon (čísla s mezerami)
+\\d{2}\\.\\d{2}\\.\\d{4}         // datum ve formátu dd.mm.rrrr
+\\b[A-ZÁ-Ž][a-zá-ž]*\\b          // slovo začínající velkým písmenem
+
+
+// ----------------------------------------
+// 🔄 12. NAHRAZOVÁNÍ POMOCÍ REGEX (replaceAll)
+// ----------------------------------------
+String text = "abc123def456";
+String bezCisel = text.replaceAll("\\d+", "");           // odstraní čísla
+String nahrazeno = text.replaceAll("[a-z]", "*");         // nahradí malá písmena hvězdičkou
+String cislaPomlcky = text.replaceAll("\\d+", "-");       // čísla nahradí pomlčkou
+
+// nahrazení více mezer jednou mezerou
+String normalizovano = text.replaceAll("\\s+", " ");
+
+
+// ----------------------------------------
+// 📏 13. NAJDI NEJDELŠÍ SLOVO (DÉLKU)
+// ----------------------------------------
+int maxLen = 0;
+for (String word : words) {
+    maxLen = Math.max(maxLen, word.length());
+}
+
+
+// ----------------------------------------
+// 🔡 14. SEŘAZENÍ SEZNAMU
+// ----------------------------------------
+List<String> wordList = Arrays.asList(words);
+Collections.sort(wordList);
+Collections.sort(wordList, Collections.reverseOrder());
+
+
+
+// ----------------------------------------
+// 🎯 1. FORMÁTOVANÝ VÝSTUP
+// ----------------------------------------
+String name = "Anna";
+int age = 25;
+System.out.printf("Jméno: %s, Věk: %d\n", name, age);
+
+
+// ----------------------------------------
+// 📚 16. ČTENÍ PRVNÍCH ČÍSEL ZE SOUBORU
+// ----------------------------------------
+BufferedReader br3 = new BufferedReader(new FileReader("soubor.txt"));
+String[] parts = br3.readLine().split("\\s+");
+int rows = Integer.parseInt(parts[0]);
+int cols = Integer.parseInt(parts[1]);
+
+
+// ----------------------------------------
+// 📌 17. PRÁCE S ARRAYLISTEM
+// ----------------------------------------
+ArrayList<String> list = new ArrayList<>();
+list.add("Ahoj");
+list.add("Svět");
+list.remove("Ahoj");
+for (String s : list) {
+    System.out.println(s);
+}
+Collections.sort(list);
+
+
+// ----------------------------------------
+// 🔁 18. REKURZE – FAKTORIÁL
+// ----------------------------------------
+public static int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+
+// ----------------------------------------
+// 🔁 19. REKURZE – FIBONACCI
+// ----------------------------------------
+public static int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+
+// ----------------------------------------
+// 💾 23. ZÁPIS DO SOUBORU – RŮZNÉ MOŽNOSTI
+// ----------------------------------------
+
+// základní zápis (přepíše soubor)
+PrintWriter pw = new PrintWriter("vystup.txt");
+pw.println("První řádek");
+pw.println("Druhý řádek");
+pw.close();
+
+// zápis s BufferedWriter
+BufferedWriter bw = new BufferedWriter(new FileWriter("vystup.txt"));
+bw.write("Text na prvním řádku");
+bw.newLine();
+bw.write("Text na druhém řádku");
+bw.close();
+
+// zápis s přidáním (append = true)
+PrintWriter pwAppend = new PrintWriter(new FileWriter("vystup.txt", true));
+pwAppend.println("Třetí řádek (přidán)");
+pwAppend.close();
+
+// zápis celého seznamu (List<String>)
+List<String> lines = Arrays.asList("Řádek 1", "Řádek 2", "Řádek 3");
+Files.write(Paths.get("vystup.txt"), lines, StandardCharsets.UTF_8);

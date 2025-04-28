@@ -1,0 +1,174 @@
+----------------------------------------
+📄 1. ČTENÍ SOUBORU ŘÁDEK PO ŘÁDKU (BufferedReader)
+----------------------------------------
+Vhodné pro situace, kdy chceme zpracovávat řádky postupně, např. logy nebo seznamy.
+----------------------------------------
+public static void readLines(String fileName) {
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        br.close();
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení souboru: " + e.getMessage());
+    }
+}
+
+----------------------------------------
+📘 2. ČTENÍ CELÉHO SOUBORU JAKO STRING (Files.readString)
+----------------------------------------
+Vhodné, pokud chceme celý obsah souboru načíst najednou – např. HTML nebo JSON.
+----------------------------------------
+public static String readWholeFile(String fileName) {
+    try {
+        return Files.readString(Paths.get(fileName));
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení souboru: " + e.getMessage());
+        return "";
+    }
+}
+
+----------------------------------------
+📄 3. ČTENÍ ŘÁDKŮ DO SEZNAMU (ArrayList<String>) (Files.readAllLines)
+----------------------------------------
+Načte všechny řádky do seznamu, vhodné pro pozdější zpracování nebo filtrování.
+----------------------------------------
+public static ArrayList<String> readAllLines(String fileName) {
+    try {
+        return new ArrayList<>(Files.readAllLines(Paths.get(fileName)));
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení souboru: " + e.getMessage());
+        return new ArrayList<>();
+    }
+}
+
+----------------------------------------
+🔢 4. NAČTENÍ MATICE INTŮ ZE SOUBORU
+----------------------------------------
+Vstupní soubor má např. formát:
+1 2 3
+4 5 6
+7 8 9
+----------------------------------------
+public static int[][] readMatrix(String fileName) {
+    ArrayList<int[]> rows = new ArrayList<>();
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.trim().split("\\s+");
+            int[] row = new int[parts.length];
+            for (int i = 0; i < parts.length; i++) {
+                row[i] = Integer.parseInt(parts[i]);
+            }
+            rows.add(row);
+        }
+        br.close();
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení matice: " + e.getMessage());
+    }
+    return rows.toArray(new int[0][]);
+}
+
+----------------------------------------
+📌 5. ČTENÍ SOUBORU POMOCÍ SCANNER (ŘÁDEK PO ŘÁDKU)
+----------------------------------------
+Alternativa k BufferedReader, jednodušší syntaxe.
+----------------------------------------
+public static void readWithScanner(String fileName) {
+    try {
+        Scanner sc = new Scanner(new File(fileName));
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            System.out.println(line);
+        }
+        sc.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("Soubor nenalezen: " + e.getMessage());
+    }
+}
+
+----------------------------------------
+🧪 6. ČTENÍ JEDNOTLIVÝCH SLOV (Scanner)
+----------------------------------------
+Vhodné pro čtení po slovech – např. počítání slov v textu.
+----------------------------------------
+public static ArrayList<String> readWords(String fileName) {
+    ArrayList<String> words = new ArrayList<>();
+    try {
+        Scanner sc = new Scanner(new File(fileName));
+        while (sc.hasNext()) {
+            words.add(sc.next());
+        }
+        sc.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("Soubor nenalezen: " + e.getMessage());
+    }
+    return words;
+}
+
+----------------------------------------
+📁 7. ZKONTROLOVÁNÍ, ZDA SOUBOR EXISTUJE
+----------------------------------------
+Vrací true, pokud soubor existuje.
+----------------------------------------
+public static boolean fileExists(String fileName) {
+    return Files.exists(Paths.get(fileName));
+}
+
+----------------------------------------
+🔢 9. NAČTENÍ JEDNOROZMĚRNÉHO POLE INTŮ Z ŘÁDKU
+----------------------------------------
+Např. soubor obsahuje: 5 10 20 35
+----------------------------------------
+public static int[] readIntArray(String fileName) {
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        br.close();
+        if (line != null) {
+            String[] parts = line.trim().split("\\s+");
+            int[] array = new int[parts.length];
+            for (int i = 0; i < parts.length; i++) {
+                array[i] = Integer.parseInt(parts[i]);
+            }
+            return array;
+        }
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení pole: " + e.getMessage());
+    }
+    return new int[0];
+}
+
+----------------------------------------
+🧾 10. POČÍTÁNÍ POČTU ŘÁDKŮ V SOUBORU
+----------------------------------------
+Vrací počet řádků v textovém souboru.
+----------------------------------------
+public static int countLines(String fileName) {
+    int count = 0;
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        while (br.readLine() != null) {
+            count++;
+        }
+        br.close();
+    } catch (IOException e) {
+        System.out.println("Chyba při čtení souboru: " + e.getMessage());
+    }
+    return count;
+}
+
+----------------------------------------
+📤 11. ZADÁNÍ DAT Z KONSOLY (Scanner)
+----------------------------------------
+Načítání uživatelského vstupu z klávesnice.
+----------------------------------------
+public static void readFromConsole() {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Zadej své jméno: ");
+    String name = sc.nextLine();
+    System.out.println("Ahoj, " + name + "!");
+}
