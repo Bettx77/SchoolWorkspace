@@ -1,0 +1,4 @@
+# School Workspace
+This project was created during high school studies as a way to practice and learn Java programming. It contains basic algorithms, concepts, and examples that are commonly required for the final exam (maturitní zkouška). Originally, the project was made for personal use, so some parts may not be fully clear or perfectly organized for others. The focus is on covering key Java topics such as input/output, control structures, arrays, basic algorithms, string handling, simple object-oriented programming, file operations, and basic exception handling.
+
+# Author: Alžběta Rousková
